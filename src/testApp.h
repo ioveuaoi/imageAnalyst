@@ -20,14 +20,20 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
+    
     void ImageLoad();
     void printColor();
+    int  palette(ofColor c);
+    void ColorTable();
     
     ofImage         img;
-    ofColor         color;
     ofDirectory     dir;
     bool            bLoad;
-    vector<string>  vectorColor;
+    
+    vector<string>  colorInfomationArray;
+    vector<ofColor> colorArray;
+    vector<int>     colorNumber;
+    vector<ofColor> colorTable;
     
     int             imageCnt;
     int             colorCnt;
