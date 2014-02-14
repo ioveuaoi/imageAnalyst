@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9FB28C4A189AAA390059CD22 /* ofxToast.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB28C46189AAA390059CD22 /* ofxToast.cpp */; };
-		9FB28C4B189AAA390059CD22 /* ToastMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB28C48189AAA390059CD22 /* ToastMessage.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -62,10 +60,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9FB28C46189AAA390059CD22 /* ofxToast.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxToast.cpp; sourceTree = "<group>"; };
-		9FB28C47189AAA390059CD22 /* ofxToast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxToast.h; sourceTree = "<group>"; };
-		9FB28C48189AAA390059CD22 /* ToastMessage.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ToastMessage.cpp; sourceTree = "<group>"; };
-		9FB28C49189AAA390059CD22 /* ToastMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToastMessage.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -120,30 +114,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9FB28C44189AAA390059CD22 /* ofxToast */ = {
-			isa = PBXGroup;
-			children = (
-				9FB28C45189AAA390059CD22 /* src */,
-			);
-			name = ofxToast;
-			sourceTree = "<group>";
-		};
-		9FB28C45189AAA390059CD22 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				9FB28C46189AAA390059CD22 /* ofxToast.cpp */,
-				9FB28C47189AAA390059CD22 /* ofxToast.h */,
-				9FB28C48189AAA390059CD22 /* ToastMessage.cpp */,
-				9FB28C49189AAA390059CD22 /* ToastMessage.h */,
-			);
-			name = src;
-			path = ../../../addons/ofxToast/src;
-			sourceTree = "<group>";
-		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
-				9FB28C44189AAA390059CD22 /* ofxToast */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -314,8 +287,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FB28C4A189AAA390059CD22 /* ofxToast.cpp in Sources */,
-				9FB28C4B189AAA390059CD22 /* ToastMessage.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* testApp.cpp in Sources */,
 			);

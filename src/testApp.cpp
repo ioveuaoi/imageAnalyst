@@ -18,6 +18,9 @@ void testApp::setup(){
     imageCnt = 0;
     colorCnt = 0;
     folderPath = "";
+    
+    imgWidth = 64;
+    imgHeight = 48;
 }
 
 
@@ -70,29 +73,29 @@ void testApp::draw(){
     ofDrawBitmapString(" Analysts(A)", 230, 35);
     ofDrawBitmapString(" Create(C)", 340, 35);
     
-    if(bPushLoad){
-        ofSetColor(100, 100, 100);
-        ofRect(0, 0, 450, 200);
-        ofSetColor(255, 255, 255);
-        ofDrawBitmapString("Loading... ", 190, 100);
-        bLoad = true;
-    }
+    ofSetColor(150,0,0);
+    ofDrawBitmapString("set Image Width  : " + ofToString(imgWidth), 10, 70);
+    ofDrawBitmapString("set Image Height : " + ofToString(imgHeight), 10, 90);
     
-    if(bPushAnal){
-        ofSetColor(100, 100, 100);
-        ofRect(0, 0, 450, 200);
-        ofSetColor(255, 255, 255);
-        ofDrawBitmapString("Analyst... ", 190, 100);
-        bAnal = true;
-    }
+    ofSetColor(150,150,150);
+    ofRect(204+36*0+4*0, 58, 36, 16);
+    ofRect(204+36*1+4*1, 58, 36, 16);
+    ofRect(204+36*2+4*2, 58, 36, 16);
+    ofRect(204+36*3+4*3, 58, 36, 16);
+    ofRect(204+36*4+4*4, 58, 36, 16);
+    ofRect(204+36*5+4*5, 58, 36, 16);
     
-    if(bPushCreate){
-        ofSetColor(100, 100, 100);
-        ofRect(0, 0, 450, 200);
-        ofSetColor(255, 255, 255);
-        ofDrawBitmapString("Create... ", 190, 100);
-        bCreate = true;
-    }
+    ofRect(204+36*0+4*0, 78, 36, 16);
+    ofRect(204+36*1+4*1, 78, 36, 16);
+    ofRect(204+36*2+4*2, 78, 36, 16);
+    ofRect(204+36*3+4*3, 78, 36, 16);
+    ofRect(204+36*4+4*4, 78, 36, 16);
+    ofRect(204+36*5+4*5, 78, 36, 16);
+    
+    ofSetColor(150,0,0);
+    ofDrawBitmapString("+100 -100  +10  -10   +1   -1", 206, 70);
+    ofDrawBitmapString("+100 -100  +10  -10   +1   -1", 206, 90);
+    
     
     ofSetColor(0);
     if(folderPath.length() >= 35)
@@ -115,6 +118,29 @@ void testApp::draw(){
         ofDrawBitmapString("Used Color : 0", 10, 180);
     }
     
+    if(bPushLoad){
+        ofSetColor(100, 100, 100);
+        ofRect(0, 0, 450, 200);
+        ofSetColor(255, 255, 255);
+        ofDrawBitmapString("Load... ", 190, 100);
+        bLoad = true;
+    }
+    
+    if(bPushAnal){
+        ofSetColor(100, 100, 100);
+        ofRect(0, 0, 450, 200);
+        ofSetColor(255, 255, 255);
+        ofDrawBitmapString("Analyst... ", 190, 100);
+        bAnal = true;
+    }
+    
+    if(bPushCreate){
+        ofSetColor(100, 100, 100);
+        ofRect(0, 0, 450, 200);
+        ofSetColor(255, 255, 255);
+        ofDrawBitmapString("Create... ", 190, 100);
+        bCreate = true;
+    }
     
 }
 
@@ -146,71 +172,74 @@ void testApp::ImageLoad(){
                dir[i].getExtension() == "gif"  ||
                dir[i].getExtension() == "GIF"){
                 img.loadImage(tmpstr);
-                imageCnt++;
-                
-                int imgPixel = img.width*img.height;
-                
-                for(int i=0; i < img.width; i++){
-                    for(int j=0; j<img.height; j++){
-                        /*
-                         string strColorCnt = "";
-                         string strImageCnt = "";
-                         string strWidthCnt = "";
-                         string strHeightCnt = "";
-                         string strColorR = "";
-                         string strColorG = "";
-                         string strColorB = "";
-                         */
+                if(img.width == imgWidth &&
+                   img.height == imgHeight){
+                    imageCnt++;
+                    
+                    int imgPixel = img.width*img.height;
+                    
+                    for(int i=0; i < img.width; i++){
+                        for(int j=0; j<img.height; j++){
+                            /*
+                             string strColorCnt = "";
+                             string strImageCnt = "";
+                             string strWidthCnt = "";
+                             string strHeightCnt = "";
+                             string strColorR = "";
+                             string strColorG = "";
+                             string strColorB = "";
+                             */
+                            
+                            color = img.getColor(i,j);
+                            colorArray.push_back(color);
+                            colorCnt++;
+                            
+                            string tmp
+                            = ofToString(colorCnt)
+                            + ","
+                            + ofToString(imageCnt)
+                            + ","
+                            + ofToString(i+1)
+                            + ","
+                            + ofToString(j+1)
+                            + ","
+                            + ofToString(int(color.r))
+                            + ","
+                            + ofToString(int(color.g))
+                            + ","
+                            + ofToString(int(color.b))
+                            + ",";
+                            
+                            string tmpHtml
+                            = "<tr><td align =\"right\">" + ofToString(colorCnt)
+                            + "</td>"
+                            + "<td align =\"right\">" + ofToString(imageCnt)
+                            + "</td>"
+                            + "<td align =\"right\">" + ofToString(i+1)
+                            + "</td>"
+                            + "<td align =\"right\">" + ofToString(j+1)
+                            + "</td>"
+                            + "<td bgcolor =\"#" + ofToHex(color.r) + ofToHex(color.g) + ofToHex(color.b) + "\">" + ofToString(int(color.r))
+                            + ","
+                            + ofToString(int(color.g))
+                            + ","
+                            + ofToString(int(color.b))
+                            + "</td>";
+                            
+                            colorInfomationArray.push_back(tmp);
+                            colorInfomationHTML.push_back(tmpHtml);
+                        }
                         
-                        color = img.getColor(i,j);
-                        colorArray.push_back(color);
-                        colorCnt++;
-                        
-                        string tmp
-                        = ofToString(colorCnt)
-                        + ","
-                        + ofToString(imageCnt)
-                        + ","
-                        + ofToString(i+1)
-                        + ","
-                        + ofToString(j+1)
-                        + ","
-                        + ofToString(int(color.r))
-                        + ","
-                        + ofToString(int(color.g))
-                        + ","
-                        + ofToString(int(color.b))
-                        + ",";
-                        
-                        string tmpHtml
-                        = "<tr><td align =\"right\">" + ofToString(colorCnt)
-                        + "</td>"
-                        + "<td align =\"right\">" + ofToString(imageCnt)
-                        + "</td>"
-                        + "<td align =\"right\">" + ofToString(i+1)
-                        + "</td>"
-                        + "<td align =\"right\">" + ofToString(j+1)
-                        + "</td>"
-                        + "<td bgcolor =\"#" + ofToHex(color.r) + ofToHex(color.g) + ofToHex(color.b) + "\">" + ofToString(int(color.r))
-                        + ","
-                        + ofToString(int(color.g))
-                        + ","
-                        + ofToString(int(color.b))
-                        + "</td>";
-                        
-                        colorInfomationArray.push_back(tmp);
-                        colorInfomationHTML.push_back(tmpHtml);
                     }
+                }else{
+                    continue;
                 }
                 
             }
         }
-        
-        if(imageCnt > 0)
-            toast.addText("Loaded");
         bPushLoad = false;
     }catch(exception e){
-        toast.addText("Load fail");
+
     }
     bLoad = false;
 }
@@ -227,7 +256,6 @@ void testApp::printColor(){
                 file << colorInfomationArray[i] << colorNumber[i]+1 << "/" << endl;
             }
             file.close();
-            toast.addText("Done");
             bFileDone = true;
         }
         
@@ -241,7 +269,6 @@ void testApp::printColor(){
             }
             file << "</td></tr></table></body></html>" << endl;
             file.close();
-            toast.addText("Done");
             bFileDone = true;
         }
         
@@ -258,7 +285,6 @@ void testApp::printColor(){
             }
             file << "</table></body></html>" << endl;
             file.close();
-            toast.addText("Done");
             bFileDone = true;
         }
         bPushCreate = false;
@@ -291,11 +317,11 @@ void testApp::keyPressed(int key){
             bAnal = false;
             bCreate = false;
             bFileDone = false;
-            
             pos      = 0;
             imageCnt = 0;
             colorCnt = 0;
             folderPath = "";
+            colorTable.clear();
             
             openFileResult = ofSystemLoadDialog("Select a Folder",true);
             folderPath = openFileResult.getPath();
@@ -385,13 +411,16 @@ void testApp::mouseDragged(int x, int y, int button){
 void testApp::mousePressed(int x, int y, int button){
     if(mouseX >= 10 && mouseX <= (10 + 100) &&
        mouseY >= 10 && mouseY <= 50){
+        bLoad = false;
+        bAnal = false;
         bPushLoad = false;
         bCreate = false;
-        
+        bFileDone = false;
         pos      = 0;
         imageCnt = 0;
         colorCnt = 0;
         folderPath = "";
+        colorTable.clear();
         
         openFileResult = ofSystemLoadDialog("Select a Folder",true);
         folderPath = openFileResult.getPath();
@@ -412,6 +441,70 @@ void testApp::mousePressed(int x, int y, int button){
        mouseY >= 10 && mouseY <= 50){
         bPushCreate = true;
     }
+    
+    
+    if(mouseX >= 204+36*0+4*0 && mouseX <= (204+36*0+4*0 + 36) &&
+       mouseY >= 58 && mouseY <= 74){
+        imgWidth += 100;
+    }
+    
+    if(mouseX >= 204+36*1+4*1 && mouseX <= (204+36*1+4*1 + 36) &&
+       mouseY >= 58 && mouseY <= 74){
+        imgWidth -= 100;
+    }
+    
+    if(mouseX >= 204+36*2+4*2 && mouseX <= (204+36*2+4*2 + 36) &&
+       mouseY >= 58 && mouseY <= 74){
+        imgWidth += 10;
+    }
+    
+    if(mouseX >= 204+36*3+4*3 && mouseX <= (204+36*3+4*3 + 36) &&
+       mouseY >= 58 && mouseY <= 74){
+        imgWidth -= 10;
+    }
+    
+    if(mouseX >= 204+36*4+4*4 && mouseX <= (204+36*4+4*4 + 36) &&
+       mouseY >= 58 && mouseY <= 74){
+        imgWidth += 1;
+    }
+    
+    if(mouseX >= 204+36*5+4*5 && mouseX <= (204+36*5+4*5 + 36) &&
+       mouseY >= 58 && mouseY <= 74){
+        imgWidth -= 1;
+    }
+    
+    
+    
+    if(mouseX >= 204+36*0+4*0 && mouseX <= (204+36*0+4*0 + 36) &&
+       mouseY >= 78 && mouseY <= 94){
+        imgHeight += 100;
+    }
+    
+    if(mouseX >= 204+36*1+4*1 && mouseX <= (204+36*1+4*1 + 36) &&
+       mouseY >= 78 && mouseY <= 94){
+        imgHeight -= 100;
+    }
+    
+    if(mouseX >= 204+36*2+4*2 && mouseX <= (204+36*2+4*2 + 36) &&
+       mouseY >= 78 && mouseY <= 94){
+        imgHeight += 10;
+    }
+    
+    if(mouseX >= 204+36*3+4*3 && mouseX <= (204+36*3+4*3 + 36) &&
+       mouseY >= 78 && mouseY <= 94){
+        imgHeight -= 10;
+    }
+    
+    if(mouseX >= 204+36*4+4*4 && mouseX <= (204+36*4+4*4 + 36) &&
+       mouseY >= 78 && mouseY <= 94){
+        imgHeight += 1;
+    }
+    
+    if(mouseX >= 204+36*5+4*5 && mouseX <= (204+36*5+4*5 + 36) &&
+       mouseY >= 78 && mouseY <= 94){
+        imgHeight -= 1;
+    }
+
 }
 
 //--------------------------------------------------------------

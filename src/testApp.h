@@ -2,9 +2,8 @@
 
 #include "ofMain.h"
 #include <fstream>
-#include "ofxToast.h"
 
-class testApp : public ofBaseApp, ofThread{
+class testApp : public ofBaseApp{
     
 public:
     void setup();
@@ -47,8 +46,10 @@ public:
     int             imageCnt;
     int             colorCnt;
     
-    ofxToast        toast;
     ofFileDialogResult openFileResult;
+    
+    int             imgWidth;
+    int             imgHeight;
     
     //input text
     string          chgColorNum;
