@@ -1,26 +1,30 @@
 #include "testApp.h"
 
+bool compareHue( const ofColor& s1, const ofColor& s2 ) {
+    return s1.getHue() < s2.getHue();
+}
+
 //--------------------------------------------------------------
 void testApp::setup(){
     ofSetBackgroundColor(255,255,255);
     ofSetVerticalSync(true);
     ofSetBackgroundAuto(true);
     
-    bLoad = false;
-    bPushLoad = false;
-    bAnal = false;
-    bPushAnal = false;
-    bCreate = false;
+    bLoad       = false;
+    bPushLoad   = false;
+    bAnal       = false;
+    bPushAnal   = false;
+    bCreate     = false;
     bPushCreate = false;
-    bFileDone = false;
+    bFileDone   = false;
     
-  	pos      = 0;
-    imageCnt = 0;
-    colorCnt = 0;
-    folderPath = "";
+  	pos         = 0;
+    imageCnt    = 0;
+    colorCnt    = 0;
+    folderPath  = "";
     
-    imgWidth = 64;
-    imgHeight = 48;
+    imgWidth    = 64;
+    imgHeight   = 48;
 }
 
 
@@ -43,6 +47,8 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    
+#pragma mark BUTTON
     if(folderPath == "")
         ofSetColor(100, 100, 100);
     else
@@ -67,16 +73,19 @@ void testApp::draw(){
         ofSetColor(100, 200, 100);
     ofRect(340, 10, 100, 40);
     
+#pragma mark BUTTON TEXT
     ofSetColor(0, 0, 0);
     ofDrawBitmapString(" Open(O)", 10, 35);
     ofDrawBitmapString(" Load(L)", 120, 35);
     ofDrawBitmapString(" Analysts(A)", 230, 35);
     ofDrawBitmapString(" Create(C)", 340, 35);
     
+#pragma mark IMAGE SCALE
     ofSetColor(150,0,0);
     ofDrawBitmapString("set Image Width  : " + ofToString(imgWidth), 10, 70);
     ofDrawBitmapString("set Image Height : " + ofToString(imgHeight), 10, 90);
     
+#pragma mark SCALE CONTROL BUTTON
     ofSetColor(150,150,150);
     ofRect(204+36*0+4*0, 58, 36, 16);
     ofRect(204+36*1+4*1, 58, 36, 16);
@@ -96,7 +105,7 @@ void testApp::draw(){
     ofDrawBitmapString("+100 -100  +10  -10   +1   -1", 206, 70);
     ofDrawBitmapString("+100 -100  +10  -10   +1   -1", 206, 90);
     
-    
+#pragma mark RESULT STRING
     ofSetColor(0);
     if(folderPath.length() >= 35)
     {
@@ -118,6 +127,7 @@ void testApp::draw(){
         ofDrawBitmapString("Used Color : 0", 10, 180);
     }
     
+#pragma mark PROCESS MESSAGE
     if(bPushLoad){
         ofSetColor(100, 100, 100);
         ofRect(0, 0, 450, 200);
@@ -143,6 +153,7 @@ void testApp::draw(){
     }
 }
 
+//--------------------------------------------------------------
 bool testApp::License(int year, int month, int day, int hour, int minute){
     if(ofGetYear() <= year &&
        ofGetMonth() <= month &&
@@ -304,22 +315,59 @@ void testApp::printColor(){
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
-    /*
-     if(key == 13)
-     key = '\n';
-     if(key == 8 || key == 127){
-     if( pos != 0 ){
-     pos--;
-     chgColorNum = chgColorNum.substr(0,pos);
-     }else
-     chgColorNum = "";
-     }else if((key >= 48 && key <= 57) || key == 44){
-     chgColorNum.append(1, (char) key);
-     pos++;
-     }
-     */
+int testApp::palette(ofColor c){
+    if(License(YEAR,MON,DAY,HOUR,MINUTE)){
+        ofColor tmpColor;
+        tmpColor = c;
+        
+        if(colorTable.size() == 0)
+        {
+            colorTable.push_back(tmpColor);
+        }
+        else if(colorTable.size() > 0)
+        {
+            bool bCheck = true;
+            for (int i=0; i<colorTable.size(); i++)
+            {
+                if(colorTable[i] == tmpColor)
+                {
+                    bCheck = false;
+                    return colorTable.size();
+                }
+            }
+            if(bCheck){
+                colorTable.push_back(tmpColor);
+            }
+        }
+        return colorTable.size();
+    }
     
+}
+
+//--------------------------------------------------------------
+void testApp::ColorTable(){
+    if(License(YEAR,MON,DAY,HOUR,MINUTE)){
+        if(colorArray.size() > 0){
+            for (int i=0; i<colorArray.size(); i++) {
+                palette(colorArray[i]);
+            }
+            ofSort(colorTable,compareHue);
+            for (int i=0; i<colorArray.size(); i++) {
+                for (int j=0; j< colorTable.size(); j++) {
+                    if(colorArray[i] == colorTable[j]){
+                        colorNumber.push_back(j);
+                        break;
+                    }
+                }
+            }
+        }
+        bPushAnal = false;
+    }
+}
+
+
+//--------------------------------------------------------------
+void testApp::keyPressed(int key){
     switch (key) {
         case 'O':
         case 'o':
@@ -353,56 +401,6 @@ void testApp::keyPressed(int key){
             bPushCreate = true;
             //printColor();
             break;
-    }
-}
-
-//--------------------------------------------------------------
-int testApp::palette(ofColor c){
-    if(License(YEAR,MON,DAY,HOUR,MINUTE)){
-        ofColor tmpColor;
-        tmpColor = c;
-        
-        if(colorTable.size() == 0)
-        {
-            colorTable.push_back(tmpColor);
-        }
-        else if(colorTable.size() > 0)
-        {
-            bool bCheck = true;
-            for (int i=0; i<colorTable.size(); i++)
-            {
-                if(colorTable[i] == tmpColor)
-                {
-                    bCheck = false;
-                    return colorTable.size();
-                }
-            }
-            if(bCheck){
-                colorTable.push_back(tmpColor);
-            }
-        }
-        return colorTable.size();
-    }
-}
-
-//--------------------------------------------------------------
-void testApp::ColorTable(){
-    if(License(YEAR,MON,DAY,HOUR,MINUTE)){
-        if(colorArray.size() > 0){
-            for (int i=0; i<colorArray.size(); i++) {
-                palette(colorArray[i]);
-            }
-            
-            for (int i=0; i<colorArray.size(); i++) {
-                for (int j=0; j< colorTable.size(); j++) {
-                    if(colorArray[i] == colorTable[j]){
-                        colorNumber.push_back(j);
-                        break;
-                    }
-                }
-            }
-        }
-        bPushAnal = false;
     }
 }
 
