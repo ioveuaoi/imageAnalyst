@@ -3,6 +3,13 @@
 #include "ofMain.h"
 #include <fstream>
 
+//Valid date until...
+#define YEAR    2014
+#define MON     2
+#define DAY     22
+#define HOUR    3
+#define MINUTE  30
+
 class testApp : public ofBaseApp{
     
 public:
@@ -20,6 +27,8 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
+    
+    bool License(int year, int month, int day, int hour, int minute);
     void ImageLoad();
     void printColor();
     int  palette(ofColor c);
