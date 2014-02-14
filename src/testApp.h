@@ -4,7 +4,7 @@
 #include <fstream>
 #include "ofxToast.h"
 
-class testApp : public ofBaseApp{
+class testApp : public ofBaseApp, ofThread{
     
 public:
     void setup();
@@ -29,8 +29,17 @@ public:
     ofImage         img;
     ofDirectory     dir;
     bool            bLoad;
+    bool            bPushLoad;
+    bool            bAnal;
+    bool            bPushAnal;
+    bool            bCreate;
+    bool            bFileDone;
+    bool            bPushCreate;
+    string          folderPath;
+    string          tmpPath;
     
     vector<string>  colorInfomationArray;
+    vector<string>  colorInfomationHTML;
     vector<ofColor> colorArray;
     vector<int>     colorNumber;
     vector<ofColor> colorTable;
@@ -39,4 +48,9 @@ public:
     int             colorCnt;
     
     ofxToast        toast;
+    ofFileDialogResult openFileResult;
+    
+    //input text
+    string          chgColorNum;
+    int             pos; // key position
 };

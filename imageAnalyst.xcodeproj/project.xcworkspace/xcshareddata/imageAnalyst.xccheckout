@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FE1ABFE6-E314-4F2E-B53C-70C32F189A9D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>imageAnalyst</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>68C6F239-19E4-45FA-B8B2-38BAE9424DCC</key>
+		<string>https://github.com/nistetsurooy/ofxToast.git</string>
+		<key>7A91B576-CAF9-423E-8480-50E25A863652</key>
+		<string>https://github.com/ioveuaoi/imageAnalyst.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>imageAnalyst.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>68C6F239-19E4-45FA-B8B2-38BAE9424DCC</key>
+		<string>../../../../../addons/ofxToast</string>
+		<key>7A91B576-CAF9-423E-8480-50E25A863652</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ioveuaoi/imageAnalyst.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7A91B576-CAF9-423E-8480-50E25A863652</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7A91B576-CAF9-423E-8480-50E25A863652</string>
+			<key>IDESourceControlWCCName</key>
+			<string>imageAnalyst</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>68C6F239-19E4-45FA-B8B2-38BAE9424DCC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxToast</string>
+		</dict>
+	</array>
+</dict>
+</plist>
