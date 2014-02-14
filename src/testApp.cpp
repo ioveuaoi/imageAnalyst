@@ -26,128 +26,120 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-    if(License(YEAR,MON,DAY,HOUR,MINUTE)){
-        if(bLoad){
-            ImageLoad();
-        }
-        
-        if(bAnal){
-            ColorTable();
-            bAnal = false;
-        }
-        
-        if(bCreate){
-            printColor();
-            bCreate = false;
-        }
+    if(bLoad){
+        ImageLoad();
+    }
+    
+    if(bAnal){
+        ColorTable();
+        bAnal = false;
+    }
+    
+    if(bCreate){
+        printColor();
+        bCreate = false;
     }
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    if(License(YEAR,MON,DAY,HOUR,MINUTE)){
-        if(folderPath == "")
-            ofSetColor(100, 100, 100);
-        else
-            ofSetColor(100, 200, 100);
-        ofRect(10, 10, 100, 40);
-        
-        if(!imageCnt)
-            ofSetColor(100, 100, 100);
-        else
-            ofSetColor(100, 200, 100);
-        ofRect(120, 10, 100, 40);
-        
-        if(!colorTable.size())
-            ofSetColor(100, 100, 100);
-        else
-            ofSetColor(100, 200, 100);
-        ofRect(230, 10, 100, 40);
-        
-        if(!bFileDone)
-            ofSetColor(100, 100, 100);
-        else
-            ofSetColor(100, 200, 100);
-        ofRect(340, 10, 100, 40);
-        
-        ofSetColor(0, 0, 0);
-        ofDrawBitmapString(" Open(O)", 10, 35);
-        ofDrawBitmapString(" Load(L)", 120, 35);
-        ofDrawBitmapString(" Analysts(A)", 230, 35);
-        ofDrawBitmapString(" Create(C)", 340, 35);
-        
-        ofSetColor(150,0,0);
-        ofDrawBitmapString("set Image Width  : " + ofToString(imgWidth), 10, 70);
-        ofDrawBitmapString("set Image Height : " + ofToString(imgHeight), 10, 90);
-        
-        ofSetColor(150,150,150);
-        ofRect(204+36*0+4*0, 58, 36, 16);
-        ofRect(204+36*1+4*1, 58, 36, 16);
-        ofRect(204+36*2+4*2, 58, 36, 16);
-        ofRect(204+36*3+4*3, 58, 36, 16);
-        ofRect(204+36*4+4*4, 58, 36, 16);
-        ofRect(204+36*5+4*5, 58, 36, 16);
-        
-        ofRect(204+36*0+4*0, 78, 36, 16);
-        ofRect(204+36*1+4*1, 78, 36, 16);
-        ofRect(204+36*2+4*2, 78, 36, 16);
-        ofRect(204+36*3+4*3, 78, 36, 16);
-        ofRect(204+36*4+4*4, 78, 36, 16);
-        ofRect(204+36*5+4*5, 78, 36, 16);
-        
-        ofSetColor(150,0,0);
-        ofDrawBitmapString("+100 -100  +10  -10   +1   -1", 206, 70);
-        ofDrawBitmapString("+100 -100  +10  -10   +1   -1", 206, 90);
-        
-        
-        ofSetColor(0);
-        if(folderPath.length() >= 35)
-        {
-            tmpPath = folderPath;
-            while (tmpPath.size() > 35) {
-                tmpPath.erase(tmpPath.begin());
-            }
-            ofDrawBitmapString("Folder Path : ..." + tmpPath, 10, 120);
+    if(folderPath == "")
+        ofSetColor(100, 100, 100);
+    else
+        ofSetColor(100, 200, 100);
+    ofRect(10, 10, 100, 40);
+    
+    if(!imageCnt)
+        ofSetColor(100, 100, 100);
+    else
+        ofSetColor(100, 200, 100);
+    ofRect(120, 10, 100, 40);
+    
+    if(!colorTable.size())
+        ofSetColor(100, 100, 100);
+    else
+        ofSetColor(100, 200, 100);
+    ofRect(230, 10, 100, 40);
+    
+    if(!bFileDone)
+        ofSetColor(100, 100, 100);
+    else
+        ofSetColor(100, 200, 100);
+    ofRect(340, 10, 100, 40);
+    
+    ofSetColor(0, 0, 0);
+    ofDrawBitmapString(" Open(O)", 10, 35);
+    ofDrawBitmapString(" Load(L)", 120, 35);
+    ofDrawBitmapString(" Analysts(A)", 230, 35);
+    ofDrawBitmapString(" Create(C)", 340, 35);
+    
+    ofSetColor(150,0,0);
+    ofDrawBitmapString("set Image Width  : " + ofToString(imgWidth), 10, 70);
+    ofDrawBitmapString("set Image Height : " + ofToString(imgHeight), 10, 90);
+    
+    ofSetColor(150,150,150);
+    ofRect(204+36*0+4*0, 58, 36, 16);
+    ofRect(204+36*1+4*1, 58, 36, 16);
+    ofRect(204+36*2+4*2, 58, 36, 16);
+    ofRect(204+36*3+4*3, 58, 36, 16);
+    ofRect(204+36*4+4*4, 58, 36, 16);
+    ofRect(204+36*5+4*5, 58, 36, 16);
+    
+    ofRect(204+36*0+4*0, 78, 36, 16);
+    ofRect(204+36*1+4*1, 78, 36, 16);
+    ofRect(204+36*2+4*2, 78, 36, 16);
+    ofRect(204+36*3+4*3, 78, 36, 16);
+    ofRect(204+36*4+4*4, 78, 36, 16);
+    ofRect(204+36*5+4*5, 78, 36, 16);
+    
+    ofSetColor(150,0,0);
+    ofDrawBitmapString("+100 -100  +10  -10   +1   -1", 206, 70);
+    ofDrawBitmapString("+100 -100  +10  -10   +1   -1", 206, 90);
+    
+    
+    ofSetColor(0);
+    if(folderPath.length() >= 35)
+    {
+        tmpPath = folderPath;
+        while (tmpPath.size() > 35) {
+            tmpPath.erase(tmpPath.begin());
         }
-        else
-            ofDrawBitmapString("Folder Path : " + folderPath, 10, 120);
-        
-        ofDrawBitmapString("Loaded Image : " + ofToString(imageCnt), 10, 140);
-        ofDrawBitmapString("Pixel : " + ofToString(colorCnt), 10, 160);
-        
-        if (colorTable.size() > 0) {
-            ofDrawBitmapString("Used Color : " + ofToString(colorTable.size()), 10, 180);
-        }else{
-            ofDrawBitmapString("Used Color : 0", 10, 180);
-        }
-        
-        if(bPushLoad){
-            ofSetColor(100, 100, 100);
-            ofRect(0, 0, 450, 200);
-            ofSetColor(255, 255, 255);
-            ofDrawBitmapString("Load... ", 190, 100);
-            bLoad = true;
-        }
-        
-        if(bPushAnal){
-            ofSetColor(100, 100, 100);
-            ofRect(0, 0, 450, 200);
-            ofSetColor(255, 255, 255);
-            ofDrawBitmapString("Analyst... ", 190, 100);
-            bAnal = true;
-        }
-        
-        if(bPushCreate){
-            ofSetColor(100, 100, 100);
-            ofRect(0, 0, 450, 200);
-            ofSetColor(255, 255, 255);
-            ofDrawBitmapString("Create... ", 190, 100);
-            bCreate = true;
-        }
+        ofDrawBitmapString("Folder Path : ..." + tmpPath, 10, 120);
+    }
+    else
+        ofDrawBitmapString("Folder Path : " + folderPath, 10, 120);
+    
+    ofDrawBitmapString("Loaded Image : " + ofToString(imageCnt), 10, 140);
+    ofDrawBitmapString("Pixel : " + ofToString(colorCnt), 10, 160);
+    
+    if (colorTable.size() > 0) {
+        ofDrawBitmapString("Used Color : " + ofToString(colorTable.size()), 10, 180);
     }else{
+        ofDrawBitmapString("Used Color : 0", 10, 180);
+    }
+    
+    if(bPushLoad){
         ofSetColor(100, 100, 100);
         ofRect(0, 0, 450, 200);
         ofSetColor(255, 255, 255);
+        ofDrawBitmapString("Load... ", 190, 100);
+        bLoad = true;
+    }
+    
+    if(bPushAnal){
+        ofSetColor(100, 100, 100);
+        ofRect(0, 0, 450, 200);
+        ofSetColor(255, 255, 255);
+        ofDrawBitmapString("Analyst... ", 190, 100);
+        bAnal = true;
+    }
+    
+    if(bPushCreate){
+        ofSetColor(100, 100, 100);
+        ofRect(0, 0, 450, 200);
+        ofSetColor(255, 255, 255);
+        ofDrawBitmapString("Create... ", 190, 100);
+        bCreate = true;
     }
 }
 
@@ -162,104 +154,102 @@ bool testApp::License(int year, int month, int day, int hour, int minute){
 
 //--------------------------------------------------------------
 void testApp::ImageLoad(){
-    if(License(YEAR,MON,DAY,HOUR,MINUTE)){
-        try{
-            ofColor color;
-            dir.listDir(openFileResult.getPath());
-            imageCnt = 0;
-            colorCnt = 0;
+    try{
+        ofColor color;
+        dir.listDir(openFileResult.getPath());
+        imageCnt = 0;
+        colorCnt = 0;
+        
+        colorArray.clear();
+        colorInfomationArray.clear();
+        colorInfomationHTML.clear();
+        
+        int imgCnt = dir.size();
+        for (int i = 0; i < imgCnt; i++) {
             
-            colorArray.clear();
-            colorInfomationArray.clear();
-            colorInfomationHTML.clear();
+            string tmpstr = dir[i].path();
             
-            int imgCnt = dir.size();
-            for (int i = 0; i < imgCnt; i++) {
-                
-                string tmpstr = dir[i].path();
-                
-                if(dir[i].getExtension() == "jpg"  ||
-                   dir[i].getExtension() == "JPG"  ||
-                   dir[i].getExtension() == "jpeg" ||
-                   dir[i].getExtension() == "JPEG" ||
-                   dir[i].getExtension() == "png"  ||
-                   dir[i].getExtension() == "PNG"  ||
-                   dir[i].getExtension() == "bmp"  ||
-                   dir[i].getExtension() == "BMP"  ||
-                   dir[i].getExtension() == "gif"  ||
-                   dir[i].getExtension() == "GIF"){
-                    img.loadImage(tmpstr);
-                    if(img.width == imgWidth &&
-                       img.height == imgHeight){
-                        imageCnt++;
-                        
-                        int imgPixel = img.width*img.height;
-                        
-                        for(int i=0; i < img.width; i++){
-                            for(int j=0; j<img.height; j++){
-                                /*
-                                 string strColorCnt = "";
-                                 string strImageCnt = "";
-                                 string strWidthCnt = "";
-                                 string strHeightCnt = "";
-                                 string strColorR = "";
-                                 string strColorG = "";
-                                 string strColorB = "";
-                                 */
-                                
-                                color = img.getColor(i,j);
-                                colorArray.push_back(color);
-                                colorCnt++;
-                                
-                                string tmp
-                                = ofToString(colorCnt)
-                                + ","
-                                + ofToString(imageCnt)
-                                + ","
-                                + ofToString(i+1)
-                                + ","
-                                + ofToString(j+1)
-                                + ","
-                                + ofToString(int(color.r))
-                                + ","
-                                + ofToString(int(color.g))
-                                + ","
-                                + ofToString(int(color.b))
-                                + ",";
-                                
-                                string tmpHtml
-                                = "<tr><td align =\"right\">" + ofToString(colorCnt)
-                                + "</td>"
-                                + "<td align =\"right\">" + ofToString(imageCnt)
-                                + "</td>"
-                                + "<td align =\"right\">" + ofToString(i+1)
-                                + "</td>"
-                                + "<td align =\"right\">" + ofToString(j+1)
-                                + "</td>"
-                                + "<td bgcolor =\"#" + ofToHex(color.r) + ofToHex(color.g) + ofToHex(color.b) + "\">" + ofToString(int(color.r))
-                                + ","
-                                + ofToString(int(color.g))
-                                + ","
-                                + ofToString(int(color.b))
-                                + "</td>";
-                                
-                                colorInfomationArray.push_back(tmp);
-                                colorInfomationHTML.push_back(tmpHtml);
-                            }
-                            
-                        }
-                    }else{
-                        continue;
-                    }
+            if(dir[i].getExtension() == "jpg"  ||
+               dir[i].getExtension() == "JPG"  ||
+               dir[i].getExtension() == "jpeg" ||
+               dir[i].getExtension() == "JPEG" ||
+               dir[i].getExtension() == "png"  ||
+               dir[i].getExtension() == "PNG"  ||
+               dir[i].getExtension() == "bmp"  ||
+               dir[i].getExtension() == "BMP"  ||
+               dir[i].getExtension() == "gif"  ||
+               dir[i].getExtension() == "GIF"){
+                img.loadImage(tmpstr);
+                if(img.width == imgWidth &&
+                   img.height == imgHeight){
+                    imageCnt++;
                     
+                    int imgPixel = img.width*img.height;
+                    
+                    for(int i=0; i < img.width; i++){
+                        for(int j=0; j<img.height; j++){
+                            /*
+                             string strColorCnt = "";
+                             string strImageCnt = "";
+                             string strWidthCnt = "";
+                             string strHeightCnt = "";
+                             string strColorR = "";
+                             string strColorG = "";
+                             string strColorB = "";
+                             */
+                            
+                            color = img.getColor(i,j);
+                            colorArray.push_back(color);
+                            colorCnt++;
+                            
+                            string tmp
+                            = ofToString(colorCnt)
+                            + ","
+                            + ofToString(imageCnt)
+                            + ","
+                            + ofToString(i+1)
+                            + ","
+                            + ofToString(j+1)
+                            + ","
+                            + ofToString(int(color.r))
+                            + ","
+                            + ofToString(int(color.g))
+                            + ","
+                            + ofToString(int(color.b))
+                            + ",";
+                            
+                            string tmpHtml
+                            = "<tr><td align =\"right\">" + ofToString(colorCnt)
+                            + "</td>"
+                            + "<td align =\"right\">" + ofToString(imageCnt)
+                            + "</td>"
+                            + "<td align =\"right\">" + ofToString(i+1)
+                            + "</td>"
+                            + "<td align =\"right\">" + ofToString(j+1)
+                            + "</td>"
+                            + "<td bgcolor =\"#" + ofToHex(color.r) + ofToHex(color.g) + ofToHex(color.b) + "\">" + ofToString(int(color.r))
+                            + ","
+                            + ofToString(int(color.g))
+                            + ","
+                            + ofToString(int(color.b))
+                            + "</td>";
+                            
+                            colorInfomationArray.push_back(tmp);
+                            colorInfomationHTML.push_back(tmpHtml);
+                        }
+                        
+                    }
+                }else{
+                    continue;
                 }
+                
             }
-            bPushLoad = false;
-        }catch(exception e){
-            
         }
-        bLoad = false;
+        bPushLoad = false;
+    }catch(exception e){
+        
     }
+    bLoad = false;
 }
 
 //--------------------------------------------------------------
@@ -315,56 +305,54 @@ void testApp::printColor(){
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-    if(License(YEAR,MON,DAY,HOUR,MINUTE)){
-        /*
-         if(key == 13)
-         key = '\n';
-         if(key == 8 || key == 127){
-         if( pos != 0 ){
-         pos--;
-         chgColorNum = chgColorNum.substr(0,pos);
-         }else
-         chgColorNum = "";
-         }else if((key >= 48 && key <= 57) || key == 44){
-         chgColorNum.append(1, (char) key);
-         pos++;
-         }
-         */
-        
-        switch (key) {
-            case 'O':
-            case 'o':
-                bLoad = false;
-                bAnal = false;
-                bCreate = false;
-                bFileDone = false;
-                pos      = 0;
-                imageCnt = 0;
-                colorCnt = 0;
-                folderPath = "";
-                colorTable.clear();
-                
-                openFileResult = ofSystemLoadDialog("Select a Folder",true);
-                folderPath = openFileResult.getPath();
-                break;
-                
-            case 'L':
-            case 'l':
-                bPushLoad = true;
-                break;
-                
-            case 'A':
-            case 'a':
-                bPushAnal = true;
-                //ColorTable();
-                break;
-                
-            case 'C':
-            case 'c':
-                bPushCreate = true;
-                //printColor();
-                break;
-        }
+    /*
+     if(key == 13)
+     key = '\n';
+     if(key == 8 || key == 127){
+     if( pos != 0 ){
+     pos--;
+     chgColorNum = chgColorNum.substr(0,pos);
+     }else
+     chgColorNum = "";
+     }else if((key >= 48 && key <= 57) || key == 44){
+     chgColorNum.append(1, (char) key);
+     pos++;
+     }
+     */
+    
+    switch (key) {
+        case 'O':
+        case 'o':
+            bLoad = false;
+            bAnal = false;
+            bCreate = false;
+            bFileDone = false;
+            pos      = 0;
+            imageCnt = 0;
+            colorCnt = 0;
+            folderPath = "";
+            colorTable.clear();
+            
+            openFileResult = ofSystemLoadDialog("Select a Folder",true);
+            folderPath = openFileResult.getPath();
+            break;
+            
+        case 'L':
+        case 'l':
+            bPushLoad = true;
+            break;
+            
+        case 'A':
+        case 'a':
+            bPushAnal = true;
+            //ColorTable();
+            break;
+            
+        case 'C':
+        case 'c':
+            bPushCreate = true;
+            //printColor();
+            break;
     }
 }
 
