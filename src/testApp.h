@@ -6,7 +6,7 @@
 //Valid date until...
 #define YEAR    2014
 #define MON     2
-#define DAY     22
+#define DAY     28
 #define HOUR    3
 #define MINUTE  30
 
@@ -33,6 +33,8 @@ public:
     void printColor();
     int  palette(ofColor c);
     void ColorTable();
+    void saveImage(vector<int> selectNum, ofColor color);
+    void stringCutter(string str, vector<int> &ch, char knife);
     
     ofImage         img;
     ofDirectory     dir;
@@ -43,6 +45,8 @@ public:
     bool            bCreate;
     bool            bFileDone;
     bool            bPushCreate;
+    bool            bImageMakePush;
+    bool            bImageMakeStart;
     string          folderPath;
     string          tmpPath;
     
@@ -61,6 +65,14 @@ public:
     int             imgHeight;
     
     //input text
-    string          chgColorNum;
+    string          chgColorNumStr;
     int             pos; // key position
+    
+    vector<int>     chgColorNum;
+    vector<int>     cutterInt;
+    ofColor         wantColor;
+    int             wr;
+    int             wg;
+    int             wb;
+    bool            bStartRgb;
 };
